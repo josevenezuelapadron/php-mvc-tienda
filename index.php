@@ -2,8 +2,8 @@
 
 require_once "autoload.php";
 
-if (isset($GET['controller'])) {
-  $nombre_controlador = $GET["controller"]."Controller";
+if (isset($_GET['controller'])) {
+  $nombre_controlador = $_GET["controller"]."Controller";
 } else {
   die("La pagina no existe");
 }
@@ -11,13 +11,14 @@ if (isset($GET['controller'])) {
 if (class_exists($nombre_controlador)) {
   $controlador = new $nombre_controlador();
 
-  if (isset($GET["action"]) && method_exists($controlador, $GET["action"])) {
-    $action = $GET['action'];
+  if (isset($_GET["action"]) && method_exists($controlador, $_GET["action"])) {
+    $action = $_GET['action'];
     $controlador->$action();
   } else {
     echo "La pagina que buscas no existe";
   }
   
 } else {
-  echo "La pagina que buscas no existe";
+  echo "La pagina que buscas no existe, fail nombre controlador";
+  echo class_exists($nombre_controlador);
 }
