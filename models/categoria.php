@@ -22,12 +22,25 @@ class Categoria {
   }
 
   function setNombre($nombre) {
-    $this->nombre = $nombre;
+    $this->nombre = trim($this->db->real_escape_string($nombre));
   }
 
   public function getCategorias() {
-    $categorias = $this->db->query("SELECT * FROM categorias;");
+    $categorias = $this->db->query("SELECT * FROM categorias ORDER BY id DESC;");
 
     return $categorias;
+  }
+
+  public function save() {
+    $sql = "INSERT INTO categorias VALUES(null, '{$this->getNombre()}');";
+    $save = $this->db->query($sql);
+
+    $result = false;
+
+    if ($save) {
+      $result = true;
+    }
+
+    return $result;
   }
 }
