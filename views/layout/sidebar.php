@@ -19,6 +19,7 @@
       <li><a href="#">Mis pedidos</a></li>
       <li><a href="#">Gestionar pedidos</a></li>
       <li><a href="#">Gestionar categorias</a></li>
+      <li><a href="<?=base_url?>usuario/logout">Cerrar sesión</a></li>
     </ul>
   </div>
 </aside>
