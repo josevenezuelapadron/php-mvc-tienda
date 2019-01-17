@@ -5,7 +5,7 @@
     <input type="text" name="nombre" required>
 
     <label for="categoria">Categoria: </label>
-    <select name="categoria">
+    <select name="categoria_id">
       <?php $categorias = Utils::showCategorias(); ?>
       <?php while($cat = $categorias->fetch_object()): ?>
         <option value="<?=$cat->id?>">
@@ -26,11 +26,8 @@
     <!-- <label for="oferta">Oferta: </label>
     <input type="text" name="oferta"> -->
 
-    <label for="fecha">Fecha: </label>
-    <input type="text" name="fecha" required>
-
-    <label for="imagen">Imagen: </label>
-    <input type="file" name="imagen">
+    <!-- <label for="imagen">Imagen: </label>
+    <input type="file" name="imagen"> -->
 
     <input type="submit" value="Guardar">
   </form>
