@@ -79,7 +79,15 @@ class productoController {
     Utils::isAdmin();
 
     if (isset($_GET['id'])) {
+      $edit = true;
       
+      $producto = new Producto();
+      $producto->setId($_GET['id']);
+      $pro = $producto->getOne();
+      
+      require_once "views/producto/crear.php";
+    } else {
+      header("Location:".base_url."producto/gestion");
     }
   }
 
