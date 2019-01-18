@@ -41,6 +41,24 @@ class productoController {
         // $producto->setOferta($oferta);
         // $producto->setImagen($imagen);
 
+        // Guardar la imagen
+        $file = $_FILES['imagen'];
+        $filename = $file['name'];
+        $mimetype = $file['type'];
+
+        echo exec("whoami");
+
+        if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
+          if (!is_dir("uploads/images")) {
+            mkdir("uploads/images", 0777, true);
+          }
+
+          move_uploaded_file($file['tmp_name'], "uploads/images/".$filename);
+          $producto->setImagen($filename);
+        } else {
+          $_SESSION['producto'] = "failed";
+        }
+
         $save = $producto->save();
 
         if ($save) {

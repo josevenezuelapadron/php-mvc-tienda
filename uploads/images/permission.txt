@@ -1,0 +1,3 @@
+user = echo exec('whoami');
+chown user uploads/images
+chmod 755 destination_dir

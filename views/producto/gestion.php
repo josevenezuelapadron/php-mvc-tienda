@@ -19,7 +19,7 @@
     <th>STOCK</th>
     <!-- <th>OFERTA</th> -->
     <th>FECHA</th>
-    <!-- <th>IMAGEN</th> -->
+    <th>IMAGEN</th>
   </tr>
   <?php while($producto = $productos->fetch_object()): ?>
     <tr>
@@ -29,9 +29,9 @@
       <td><?= $producto->descripcion; ?></td>
       <td><?= $producto->precio; ?></td>
       <td><?= $producto->stock; ?></td>
-      <!-- <td><?= $producto->oferta; ?></td> -->
+      <!-- <td>$producto->oferta; ?></td> -->
       <td><?= $producto->fecha; ?></td>
-      <!-- <td><?= $producto->imagen; ?></td> -->
+      <td><?= $producto->imagen; ?></td>
     </tr>
   <?php endwhile; ?>
 </table>
