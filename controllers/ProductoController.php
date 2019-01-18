@@ -46,8 +46,6 @@ class productoController {
         $filename = $file['name'];
         $mimetype = $file['type'];
 
-        echo exec("whoami");
-
         if ($mimetype == "image/jpg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/gif") {
           if (!is_dir("uploads/images")) {
             mkdir("uploads/images", 0777, true);
@@ -56,7 +54,7 @@ class productoController {
           move_uploaded_file($file['tmp_name'], "uploads/images/".$filename);
           $producto->setImagen($filename);
         } else {
-          $_SESSION['producto'] = "failed";
+          $producto->setImagen("no imagen");
         }
 
         $save = $producto->save();
@@ -73,6 +71,33 @@ class productoController {
 
     } else {
       $_SESSION['producto'] = "failed";
+    }
+    header("Location:".base_url."producto/gestion");
+  }
+
+  public function editar() {
+    Utils::isAdmin();
+
+    if (isset($_GET['id'])) {
+      
+    }
+  }
+
+  public function eliminar() {
+    Utils::isAdmin();
+
+    if (isset($_GET['id'])) {
+      $producto = new Producto();
+      $producto->setId($_GET['id']);
+      $delete = $producto->delete();
+
+      if ($delete) {
+        $_SESSION['delete'] = 'complete';
+      } else {
+        $_SESSION['delete'] = 'failed';
+      }
+    } else {
+      $_SESSION['delete'] = 'failed';
     }
     header("Location:".base_url."producto/gestion");
   }
