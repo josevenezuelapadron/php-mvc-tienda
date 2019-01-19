@@ -2,10 +2,11 @@
 <aside id="lateral">
   <div id="carrito" class="block_aside">
     <h3>Mi carrito</h3>
-
+  
+    <?php $stats = Utils::statsCarrito(); ?>
     <ul>
-      <li><a href="<?=base_url?>carrito/index">Productos ()</a></li>
-      <li><a href="<?=base_url?>carrito/index">Total ()</a></li>
+      <li><a href="<?=base_url?>carrito/index">Productos (<?=$stats['count']?>)</a></li>
+      <li><a href="<?=base_url?>carrito/index">Total <?=$stats['total']?> $</a></li>
       <li><a href="<?=base_url?>carrito/index">Ver el carrito</a></li>
     </ul>
   </div>
