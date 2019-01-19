@@ -1,5 +1,15 @@
 <!-- BARRA LATERAL -->
 <aside id="lateral">
+  <div id="carrito" class="block_aside">
+    <h3>Mi carrito</h3>
+
+    <ul>
+      <li><a href="<?=base_url?>carrito/index">Productos ()</a></li>
+      <li><a href="<?=base_url?>carrito/index">Total ()</a></li>
+      <li><a href="<?=base_url?>carrito/index">Ver el carrito</a></li>
+    </ul>
+  </div>
+
   <div id="login" class="block_aside">
     <?php if (!isset($_SESSION['identity'])): ?>
       <form action="<?= base_url ?>usuario/login" method="POST">
