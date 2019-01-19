@@ -4,8 +4,8 @@ require_once "models/producto.php";
 
 class CarritoController {
   public function index() {
-    echo "Controlador carrito, accion index";
-    var_dump($_SESSION['carrito']);
+    echo "Controlador carrito, accion index<br><br>";
+    print_r($_SESSION['carrito']);
   }
 
   public function add() {
@@ -16,8 +16,16 @@ class CarritoController {
     }
 
     if (isset($_SESSION['carrito'])) {
-      
-    } else {
+      $counter = 0;
+      foreach ($_SESSION['carrito'] as $indice => $elemento) {
+        if ($elemento['id_producto'] == $producto_id) {
+          $_SESSION['carrito'][$indice]['unidades']++;
+          $counter++;
+        }
+      }
+    } 
+
+    if (!isset($counter) || $counter == 0) {
       $producto = new Producto();
       $producto->setId($producto_id);
       $producto = $producto->getOne();
