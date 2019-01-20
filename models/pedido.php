@@ -184,4 +184,24 @@ class Pedido {
 
     return $result;
   }
+
+  public function save_linea() {
+    $sql = "SELECT LAST_INSERT_ID() as 'pedido';";
+    $query = $this->db->query($sql);
+    $pedido_id = $query->fetch_object()->pedido;
+
+    foreach ($_SESSION['carrito'] as $elemento) {
+      $producto = $elemento['producto'];
+      $insert = "INSERT INTO lineas_pedidos VALUES (null, {$pedido_id}, {$producto->id}, {$elemento['unidades']});";
+
+      $save = $this->db->query($insert);
+    }
+
+    $result = false;
+    if ($save) {
+      $result = true;
+    }
+
+    return $result;
+  }
 }
