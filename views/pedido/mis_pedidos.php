@@ -24,7 +24,7 @@
       </td>
 
       <td>
-        <a href="<?=base_url?>pedido/detalle&id<?=$ped->id?>" class="button button-carrito">Detalle</a>
+        <a href="<?=base_url?>pedido/detalle&id=<?=$ped->id?>" class="button button-carrito">Detalle</a>
       </td>
     </tr>
   <?php endwhile; ?>
