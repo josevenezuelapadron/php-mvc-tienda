@@ -32,7 +32,12 @@
       </td>
 
       <td>
-        <?=$elemento['unidades']?>
+	      <?=$elemento['unidades']?>
+	      <div class="updown-unidades">
+		      <a class="button" href="<?=base_url?>carrito/up&index=<?=$indice?>">+</a>
+
+		      <a class="button" href="<?=base_url?>carrito/down&index=<?=$indice?>">-</a>
+	      </div>
       </td>
 
 	    <td>
