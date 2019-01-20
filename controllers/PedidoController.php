@@ -8,6 +8,7 @@ class pedidoController {
   }
 
   public function add() {
+
     if (isset($_SESSION['identity'])) {
       $usuario_id = isset($_SESSION['identity']) ? $_SESSION['identity']->id : false;
 
@@ -43,6 +44,7 @@ class pedidoController {
       }
 
       header("Location:".base_url."pedido/confirmado");
+      unset($_SESSION['carrito']);
 
     } else {
       header("Location:".base_url);
