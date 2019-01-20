@@ -1,8 +1,10 @@
 <?php
 
-class Utils {
-  public static function deleteSession($name) {
-    if(isset($_SESSION[$name])) {
+class Utils
+{
+  public static function deleteSession ($name)
+  {
+    if (isset($_SESSION[$name])) {
       $_SESSION[$name] = null;
       unset($_SESSION[$name]);
     }
@@ -10,23 +12,26 @@ class Utils {
     return $name;
   }
 
-  public static function isAdmin() {
+  public static function isAdmin ()
+  {
     if (!isset($_SESSION['admin'])) {
-      header("Location:".base_url);
+      header("Location:" . base_url);
     } else {
       return true;
     }
   }
 
-  public static function isIdentity() {
+  public static function isIdentity ()
+  {
     if (!isset($_SESSION['identity'])) {
-      header("Location:".base_url);
+      header("Location:" . base_url);
     } else {
       return true;
     }
   }
 
-  public static function showCategorias() {
+  public static function showCategorias ()
+  {
     require_once "models/categoria.php";
 
     $categoria = new Categoria();
@@ -35,7 +40,8 @@ class Utils {
     return $categorias;
   }
 
-  public static function statsCarrito() {
+  public static function statsCarrito ()
+  {
     $stats = array(
       "count" => 0,
       "total" => 0
@@ -44,11 +50,38 @@ class Utils {
     if (isset($_SESSION['carrito'])) {
       $stats['count'] = count($_SESSION['carrito']);
 
-      foreach($_SESSION['carrito'] as $producto) {
-        $stats['total'] += $producto['precio']*$producto['unidades'];
+      foreach ($_SESSION['carrito'] as $producto) {
+        $stats['total'] += $producto['precio'] * $producto['unidades'];
       }
     }
 
     return $stats;
+  }
+
+  public static function showStatus ($status) {
+    $value = "Pendiente";
+    switch ($status) {
+      case "confirm":
+        $value = "Pendiente";
+        break;
+
+      case "preparation":
+        $value = "En preparacion";
+        break;
+
+      case "ready":
+        $value = "Preparado para enviar";
+        break;
+
+      case "sended":
+        $value = "Enviado";
+        break;
+
+      default:
+        $value = "Pendiente";
+        break;
+    }
+
+    return $value;
   }
 }

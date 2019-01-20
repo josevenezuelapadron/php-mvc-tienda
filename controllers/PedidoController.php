@@ -99,5 +99,29 @@ class pedidoController {
 
   public function gestion() {
     Utils::isAdmin();
+    $gestion = true;
+
+    $pedido = new Pedido();
+    $pedidos = $pedido->getAll();
+
+    require_once "views/pedido/mis_pedidos.php";
+  }
+
+  public function estado() {
+    Utils::isAdmin();
+
+    if (isset($_POST) && isset($_POST['pedido_id']) && isset($_POST['estado'])) {
+      $pedido_id = $_POST['pedido_id'];
+      $estado = $_POST['estado'];
+
+      $pedido = new Pedido();
+      $pedido->setId($pedido_id);
+      $pedido->setEstado($estado);
+      $pedido->updateOne();
+
+      header("Location:".base_url."pedido/detalle&id=".$pedido->getId());
+    } else {
+      header("Location:".base_url);
+    }
   }
 }
